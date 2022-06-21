@@ -1,0 +1,72 @@
+.calculator-container {
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(5, 50px);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  grid-template-areas:
+    "clear division multiplication subtraction"
+    "num-seven num-eight num-nine addition"
+    "num-four num-five num-six addition"
+    "num-one num-two num-three equal"
+    "num-zero num-zero decimals equal";
+}
+
+.calc-btn {
+  display: flex;
+  background-color: blanchedalmond;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.zero-btn {
+  grid-area: num-zero;
+}
+.one-btn {
+  grid-area: num-one;
+}
+.two-btn {
+  grid-area: num-two;
+}
+.three-btn {
+  grid-area: num-three;
+}
+.four-btn {
+  grid-area: num-four;
+}
+.five-btn {
+  grid-area: num-five;
+}
+.six-btn {
+  grid-area: num-six;
+}
+.seven-btn {
+  grid-area: num-seven;
+}
+.eight-btn {
+  grid-area: num-eight;
+}
+.nine-btn {
+  grid-area: num-nine;
+}
+.decimal-btn {
+  grid-area: decimals;
+}
+.divide-btn {
+  grid-area: division;
+}
+.multiply-btn {
+  grid-area: multiplication;
+}
+.subtract-btn {
+  grid-area: subtraction;
+}
+.add-btn {
+  grid-area: addition;
+}
+.equal-btn {
+  grid-area: equal;
+}
+.clear-btn {
+  grid-area: clear;
+}
