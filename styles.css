@@ -1,10 +1,11 @@
 .calculator-container {
   display: grid;
   grid-template-columns: repeat(4, 50px);
-  grid-template-rows: repeat(5, 50px);
+  grid-template-rows: repeat(6, 50px);
   grid-column-gap: 5px;
   grid-row-gap: 5px;
   grid-template-areas:
+    "calc-display calc-display calc-display calc-display"
     "clear division multiplication subtraction"
     "num-seven num-eight num-nine addition"
     "num-four num-five num-six addition"
@@ -12,6 +13,15 @@
     "num-zero num-zero decimals equal";
 }
 
+.calc-display {
+  display: flex;
+  background-color: lightskyblue;
+  grid-area: calc-display;
+  align-items: center;
+  justify-content: end;
+  padding-right: 8px;
+  font-size: 40px;
+}
 .calc-btn {
   display: flex;
   background-color: blanchedalmond;
