@@ -10,9 +10,9 @@ body {
   grid-row-gap: 5px;
   grid-template-areas:
     "calc-display calc-display calc-display calc-display"
-    "clear division multiplication subtraction"
+    "clear sign multiplication division"
     "num-seven num-eight num-nine addition"
-    "num-four num-five num-six addition"
+    "num-four num-five num-six subtraction"
     "num-one num-two num-three equal"
     "num-zero num-zero decimals equal";
 }
@@ -27,14 +27,21 @@ body {
   font-size: 36px;
   font-weight: 700;
 }
-.calc-btn {
+.calculator-container button {
   display: flex;
   background-color: blanchedalmond;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 24px;
 }
+
+.calculator-container button:active {
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+  background-color: rgb(255, 247, 235);
+}
+
+/* Operand button grid template areas */
 .zero-btn {
   grid-area: num-zero;
 }
@@ -65,9 +72,8 @@ body {
 .nine-btn {
   grid-area: num-nine;
 }
-.decimal-btn {
-  grid-area: decimals;
-}
+
+/* Operator button grid template areas */
 .divide-btn {
   grid-area: division;
 }
@@ -79,6 +85,14 @@ body {
 }
 .add-btn {
   grid-area: addition;
+}
+
+/* Special button grid template areas */
+.sign-btn {
+  grid-area: sign;
+}
+.decimal-btn {
+  grid-area: decimals;
 }
 .equal-btn {
   grid-area: equal;
