@@ -1,8 +1,18 @@
 let display = 0;
+let operand1 = 0;
+let operator = "";
+let operand2 = undefined;
 
 function updateDisplay() {
   const displayElement = document.getElementsByClassName("calc-display")[0];
   displayElement.textContent = display;
+}
+
+function handleOperand(e) {
+  if (operator == "") {
+    if (operand1 == 0) operand1 = "";
+    operand1 += e.srcElement.value;
+  }
 }
 
 function addEventListenersToButtons() {
@@ -12,7 +22,7 @@ function addEventListenersToButtons() {
 
   buttons.forEach((button) => {
     if (button.classList.contains("operand")) {
-      button.addEventListener("click", logEventValue);
+      button.addEventListener("click", handleOperand);
     } else if (button.classList.contains("operator")) {
       button.addEventListener("click", logEventValue);
     } else if (button.classList.contains("sign")) {
@@ -28,7 +38,10 @@ function addEventListenersToButtons() {
 }
 
 function logEventValue(e) {
-  console.log(e.srcElement.value);
+  const value = e.srcElement.value;
+  console.log(value);
+  display += value;
+  updateDisplay();
 }
 
 function add(num1, num2) {
