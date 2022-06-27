@@ -3,6 +3,14 @@ let operand1 = 0;
 let operator = "";
 let operand2 = undefined;
 
+function clearCalculator() {
+  display = 0;
+  operand1 = 0;
+  operator = "";
+  operand2 = undefined;
+  updateDisplay();
+}
+
 function updateDisplay() {
   const displayElement = document.getElementsByClassName("calc-display")[0];
   displayElement.textContent = display;
@@ -12,6 +20,8 @@ function handleOperand(e) {
   if (operator == "") {
     if (operand1 == 0) operand1 = "";
     operand1 += e.srcElement.value;
+    display = operand1;
+    updateDisplay();
   }
 }
 
@@ -32,7 +42,7 @@ function addEventListenersToButtons() {
     } else if (button.classList.contains("equals")) {
       button.addEventListener("click", logEventValue);
     } else if (button.classList.contains("clear")) {
-      button.addEventListener("click", logEventValue);
+      button.addEventListener("click", clearCalculator);
     }
   });
 }
