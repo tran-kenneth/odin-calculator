@@ -49,6 +49,22 @@ function handleSign(e) {
   console.log(e);
 }
 
+function handleDecimal(e) {
+  if (display.indexOf(".") == -1) {
+    if (operator == "") {
+      operand1 += ".";
+      display = operand1;
+      completedOperation = false;
+    } else {
+      operand2 += ".";
+      display = operand2;
+    }
+  }
+
+  updateDisplay();
+  console.log(e);
+}
+
 function handleEqual() {
   if (operator) {
     const result = operate(operator, Number(operand1), Number(operand2));
@@ -75,7 +91,7 @@ function addEventListenersToButtons() {
     } else if (button.classList.contains("sign")) {
       button.addEventListener("click", handleSign);
     } else if (button.classList.contains("decimal")) {
-      button.addEventListener("click", logEventValue);
+      button.addEventListener("click", handleDecimal);
     } else if (button.classList.contains("equals")) {
       button.addEventListener("click", handleEqual);
     } else if (button.classList.contains("clear")) {
