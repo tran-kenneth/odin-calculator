@@ -1,14 +1,14 @@
 let display = 0;
 let operand1 = 0;
 let operator = "";
-let operand2 = undefined;
+let operand2 = 0;
 let completedOperation = false;
 
 function clearCalculator() {
   display = 0;
   operand1 = 0;
   operator = "";
-  operand2 = undefined;
+  operand2 = 0;
   updateDisplay();
 }
 
@@ -21,7 +21,7 @@ function adjustOverflowDisplay() {
   console.log("");
 }
 
-function handleOperand() {
+function handleOperand(e) {
   if (operator == "") {
     if (operand1 === 0 || completedOperation == true) operand1 = "";
     completedOperation = false;
@@ -29,14 +29,14 @@ function handleOperand() {
     display = operand1;
     updateDisplay();
   } else {
-    if (operand2 == undefined) operand2 = "";
+    if (operand2 === 0) operand2 = "";
     operand2 += e.srcElement.value;
     display = operand2;
     updateDisplay();
   }
 }
 
-function handleOperator() {
+function handleOperator(e) {
   completedOperation = false;
   operator = e.srcElement.value;
 }
@@ -47,7 +47,7 @@ function handleSign() {
     display = operand1;
     completedOperation = false;
   } else {
-    if (operand2 == undefined) operand2 = 0; // operand1 -> operator -> sign -> NaN
+    //if (operand2 === 0) operand2 = 0; // operand1 -> operator -> sign -> NaN
     operand2 = Number(operand2) * -1;
     display = operand2;
   }
@@ -75,7 +75,7 @@ function handleEqual() {
     console.log(result);
     operand1 = result;
     display = result;
-    operand2 = undefined;
+    operand2 = 0;
     completedOperation = true;
   }
   operator = "";
