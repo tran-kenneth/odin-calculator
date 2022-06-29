@@ -22,7 +22,28 @@ function handleOperand(e) {
     operand1 += e.srcElement.value;
     display = operand1;
     updateDisplay();
+  } else {
+    if (operand2 == undefined) operand2 = "";
+    operand2 += e.srcElement.value;
+    display = operand2;
+    updateDisplay();
   }
+}
+
+function handleOperator(e) {
+  operator = e.srcElement.value;
+}
+
+function handleEqual() {
+  if (operator) {
+    const result = operate(operator, Number(operand1), Number(operand2));
+    console.log(result);
+    operand1 = result;
+    display = result;
+    operand2 = undefined;
+  }
+  operator = "";
+  updateDisplay();
 }
 
 function addEventListenersToButtons() {
@@ -34,13 +55,13 @@ function addEventListenersToButtons() {
     if (button.classList.contains("operand")) {
       button.addEventListener("click", handleOperand);
     } else if (button.classList.contains("operator")) {
-      button.addEventListener("click", logEventValue);
+      button.addEventListener("click", handleOperator);
     } else if (button.classList.contains("sign")) {
       button.addEventListener("click", logEventValue);
     } else if (button.classList.contains("decimal")) {
       button.addEventListener("click", logEventValue);
     } else if (button.classList.contains("equals")) {
-      button.addEventListener("click", logEventValue);
+      button.addEventListener("click", handleEqual);
     } else if (button.classList.contains("clear")) {
       button.addEventListener("click", clearCalculator);
     }
@@ -62,7 +83,7 @@ function subtract(num1, num2) {
   return num1 - num2;
 }
 
-function multiple(num1, num2) {
+function multiply(num1, num2) {
   return num1 * num2;
 }
 
@@ -71,7 +92,17 @@ function divide(num1, num2) {
 }
 
 function operate(operator, num1, num2) {
-  return operator(num1, num2);
+  console.log(num1, num2);
+  switch (operator) {
+    case "+":
+      return add(num1, num2);
+    case "-":
+      return subtract(num1, num2);
+    case "*":
+      return multiply(num1, num2);
+    case "/":
+      return divide(num1, num2);
+  }
 }
 
 updateDisplay();
