@@ -17,9 +17,13 @@ function updateDisplay() {
   displayElement.textContent = display;
 }
 
-function handleOperand(e) {
+function adjustOverflowDisplay() {
+  console.log("");
+}
+
+function handleOperand() {
   if (operator == "") {
-    if (operand1 == 0 || completedOperation == true) operand1 = "";
+    if (operand1 === 0 || completedOperation == true) operand1 = "";
     completedOperation = false;
     operand1 += e.srcElement.value;
     display = operand1;
@@ -32,25 +36,25 @@ function handleOperand(e) {
   }
 }
 
-function handleOperator(e) {
+function handleOperator() {
   completedOperation = false;
   operator = e.srcElement.value;
 }
 
-function handleSign(e) {
+function handleSign() {
   if (operator == "") {
     operand1 = Number(operand1) * -1;
     display = operand1;
     completedOperation = false;
   } else {
+    if (operand2 == undefined) operand2 = 0; // operand1 -> operator -> sign -> NaN
     operand2 = Number(operand2) * -1;
     display = operand2;
   }
   updateDisplay();
-  console.log(e);
 }
 
-function handleDecimal(e) {
+function handleDecimal() {
   if (String(display).indexOf(".") == -1) {
     if (operator == "") {
       operand1 += ".";
@@ -63,7 +67,6 @@ function handleDecimal(e) {
   }
 
   updateDisplay();
-  console.log(e);
 }
 
 function handleEqual() {
@@ -81,8 +84,6 @@ function handleEqual() {
 
 function addEventListenersToButtons() {
   const buttons = document.querySelectorAll("button");
-  console.log(buttons);
-  console.log(buttons[0].classList.contains("operand"));
 
   buttons.forEach((button) => {
     if (button.classList.contains("operand")) {
