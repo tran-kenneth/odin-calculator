@@ -2,6 +2,7 @@ let display = 0;
 let operand1 = 0;
 let operator = "";
 let operand2 = undefined;
+let completedOperation = false;
 
 function clearCalculator() {
   display = 0;
@@ -18,7 +19,7 @@ function updateDisplay() {
 
 function handleOperand(e) {
   if (operator == "") {
-    if (operand1 == 0) operand1 = "";
+    if (operand1 == 0 || completedOperation == true) operand1 = "";
     operand1 += e.srcElement.value;
     display = operand1;
     updateDisplay();
@@ -41,6 +42,7 @@ function handleEqual() {
     operand1 = result;
     display = result;
     operand2 = undefined;
+    completedOperation = true;
   }
   operator = "";
   updateDisplay();
