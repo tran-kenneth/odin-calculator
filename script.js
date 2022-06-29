@@ -32,7 +32,21 @@ function handleOperand(e) {
 }
 
 function handleOperator(e) {
+  completedOperation = false;
   operator = e.srcElement.value;
+}
+
+function handleSign(e) {
+  if (operator == "") {
+    operand1 = Number(operand1) * -1;
+    display = operand1;
+    completedOperation = false;
+  } else {
+    operand2 = Number(operand2) * -1;
+    display = operand2;
+  }
+  updateDisplay();
+  console.log(e);
 }
 
 function handleEqual() {
@@ -59,7 +73,7 @@ function addEventListenersToButtons() {
     } else if (button.classList.contains("operator")) {
       button.addEventListener("click", handleOperator);
     } else if (button.classList.contains("sign")) {
-      button.addEventListener("click", logEventValue);
+      button.addEventListener("click", handleSign);
     } else if (button.classList.contains("decimal")) {
       button.addEventListener("click", logEventValue);
     } else if (button.classList.contains("equals")) {
