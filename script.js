@@ -20,6 +20,7 @@ function updateDisplay() {
 function handleOperand(e) {
   if (operator == "") {
     if (operand1 == 0 || completedOperation == true) operand1 = "";
+    completedOperation = false;
     operand1 += e.srcElement.value;
     display = operand1;
     updateDisplay();
