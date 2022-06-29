@@ -50,7 +50,7 @@ function handleSign(e) {
 }
 
 function handleDecimal(e) {
-  if (display.indexOf(".") == -1) {
+  if (String(display).indexOf(".") == -1) {
     if (operator == "") {
       operand1 += ".";
       display = operand1;
