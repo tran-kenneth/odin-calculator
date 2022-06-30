@@ -14,11 +14,19 @@ function clearCalculator() {
 
 function updateDisplay() {
   const displayElement = document.getElementsByClassName("calc-display")[0];
-  displayElement.textContent = display;
-}
+  if (display > 99999999999 || display < -9999999999) {
+    const displayAsExponential = display.toExponential();
+    const firstSixChar = displayAsExponential.substring(0, 6);
+    const lastFourChar = displayAsExponential.substring(
+      displayAsExponential.length - 4
+    );
+    display = firstSixChar.concat(lastFourChar);
+  } else {
+    const displayAsString = "" + display;
+    display = Number(displayAsString.substring(0, 11));
+  }
 
-function adjustOverflowDisplay() {
-  console.log("");
+  displayElement.textContent = display;
 }
 
 function handleOperand(e) {
@@ -47,7 +55,6 @@ function handleSign() {
     display = operand1;
     completedOperation = false;
   } else {
-    //if (operand2 === 0) operand2 = 0; // operand1 -> operator -> sign -> NaN
     operand2 = Number(operand2) * -1;
     display = operand2;
   }
@@ -64,9 +71,8 @@ function handleDecimal() {
       operand2 += ".";
       display = operand2;
     }
+    updateDisplay();
   }
-
-  updateDisplay();
 }
 
 function handleEqual() {
@@ -77,9 +83,9 @@ function handleEqual() {
     display = result;
     operand2 = 0;
     completedOperation = true;
+    updateDisplay();
   }
   operator = "";
-  updateDisplay();
 }
 
 function addEventListenersToButtons() {
