@@ -14,7 +14,8 @@ function clearCalculator() {
 
 function updateDisplay() {
   const displayElement = document.getElementsByClassName("calc-display")[0];
-  if (display > 99999999999 || display < -9999999999) {
+  if (display === Infinity || display === -Infinity) {
+  } else if (display > 99999999999 || display < -9999999999) {
     const displayAsExponential = display.toExponential();
     const firstSixChar = displayAsExponential.substring(0, 6);
     const lastFourChar = displayAsExponential.substring(
